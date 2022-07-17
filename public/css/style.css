@@ -1,0 +1,138 @@
+*
+{
+    z-index:0;
+  
+
+}
+.footer
+{position: absolute;
+    bottom: 0;
+    width:100%;
+    text-align: center;
+   
+}
+.footer p{
+    font-size: 1.5rem;
+    color: grey;
+}
+body{
+    background-color: black;
+  background-image: url("/images/bg.jpg");
+  background-size: cover;
+   
+  
+
+}
+.logo
+{   
+    position:absolute;
+    left:2rem;
+    top:0;
+    padding:0;
+  
+}
+.logo img{
+    
+    height: 150px;
+    z-index: -1;
+   
+   
+}
+.content{
+    width:800px;
+    color:white;
+    margin-top:4rem;
+    margin-right:auto;
+    margin-left:auto;
+    
+}
+.content p{
+    font-size:1.5rem;
+
+}
+
+.registerButton{
+    width:200px;
+    margin-top:2rem;
+    background-color: rgb(20, 20, 199);
+    border-radius: 5%;
+    
+}
+.registerButton a{
+    color:white;
+    text-decoration: none;
+    font-size:1rem;
+    font-weight: bold;
+}
+.form{
+    width:500px;
+    margin:3rem auto 0 auto;
+    color:white;
+    text-align: center;
+    border:2px solid white;
+    padding-top: 2rem;
+    padding-bottom:2rem;
+    
+}
+.form label,input{
+    margin-bottom:1.5rem;
+}
+.form input{
+    margin-left:2rem;
+}
+.ticket img{
+    height:200px;
+}
+.ticket{
+    width:500px;
+    color:white;
+    text-align: center;
+    border:2px solid white;
+    margin:2rem auto 0 auto;
+    padding-bottom:1rem;
+    z-index: 1;
+    
+
+}
+.iglogo img{
+    height:30px ;
+    border-radius: 10%;
+}
+
+@media only screen and (max-width:1000px)
+{
+    .logo img{
+        height:200px;
+        z-index: -1;
+    }
+    .content{
+        width:800px;
+        color:white;
+        margin-top:12rem;
+        margin-right:auto;
+        margin-left:auto;
+    }
+    .content p{
+        font-size:1.5rem;
+
+    }
+    .form{
+        width:500px;
+        margin:10rem auto 0 auto;
+        color:white;
+        text-align: center;
+        border:2px solid white;
+        padding-top: 2rem;
+        padding-bottom:2rem;
+    }
+    .ticket img{
+        height:200px;
+    }
+    .ticket{
+        width:500px;
+        margin:10rem auto 0 auto;
+        color:white;
+        text-align: center;
+       height: auto;
+    }
+}
