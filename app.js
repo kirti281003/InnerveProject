@@ -55,6 +55,7 @@ app.post("/ticket",(req,res)=>{
                     {
                         msg="wrong password";
                         res.render("ticket",{msg:msg});
+                        msg="";
                     }
                     else
                     {
@@ -67,34 +68,32 @@ app.post("/ticket",(req,res)=>{
             {
                msg="Email Not Registered" ;
                res.render("ticket",{msg:msg});
+               msg="";
             }
         }
     })
     msg="";
 })
 app.post("/register",
-[
-    body("email").isEmail(),
-    body('password').isLength({ min:6 })
+[//validation process
+    body("email").isEmail(),//checking if entered is email
+    body('password').isLength({ min:6 })//restricting length of password
     .withMessage('must be at least 6 chars long'),
     check('email').custom(value => {
         return Register.findOne({Email:value}).then(user => {
           if (user) {
             return Promise.reject('E-mail already in use');
           }
-        });
+        });//checking for unique email
       }),
-      body('phone').isLength(10),
+      body('phone').isLength(10),//phone no. length restriction
       check('phone').custom(value => {
         return Register.findOne({Phone:value}).then(user => {
           if (user) {
             return Promise.reject('Phone No. already registered');
           }
-        });
-      })
-
-
-],(req,res)=>{
+        });//checking for unique phone no.
+      })],(req,res)=>{
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         msg=errors.array()[0].msg+":"+errors.array()[0].param;
