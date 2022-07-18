@@ -3,6 +3,7 @@ const bodyParser=require("body-parser");
 const mongoose=require("mongoose");
 const bcrypt=require("bcrypt");
 const { body, validationResult } = require('express-validator');
+const { check } = require('express-validator');
 var msg="";
 const app=express();
 app.set('view engine','ejs');
@@ -34,7 +35,7 @@ app.get("/registered",(req,res)=>
 })
 app.get("/ticket",(req,res)=>
 {
-    res.render("ticket");
+    res.render("ticket",{msg:msg});
 });
 app.post("/ticket",(req,res)=>{
     var Email=req.body.email;
@@ -46,21 +47,53 @@ app.post("/ticket",(req,res)=>{
             if(foundUser)
             {
                 bcrypt.compare(Password,foundUser.Password,(err,response)=>
-                {
-                    if(response===true)
+                {if(err)
+                    {
+                        console.log(err);
+                    }
+                    else if(response===false)
+                    {
+                        msg="wrong password";
+                        res.render("ticket",{msg:msg});
+                    }
+                    else
                     {
                         res.render("registered",{name:foundUser.Name, college:foundUser.College});
                     }
                 }
                 )
             }
+            else
+            {
+               msg="Email Not Registered" ;
+               res.render("ticket",{msg:msg});
+            }
         }
     })
+    msg="";
 })
 app.post("/register",
 [
     body("email").isEmail(),
     body('password').isLength({ min:6 })
+    .withMessage('must be at least 6 chars long'),
+    check('email').custom(value => {
+        return Register.findOne({Email:value}).then(user => {
+          if (user) {
+            return Promise.reject('E-mail already in use');
+          }
+        });
+      }),
+      body('phone').isLength(10),
+      check('phone').custom(value => {
+        return Register.findOne({Phone:value}).then(user => {
+          if (user) {
+            return Promise.reject('Phone No. already registered');
+          }
+        });
+      })
+
+
 ],(req,res)=>{
     const errors = validationResult(req);
     if (!errors.isEmpty()) {

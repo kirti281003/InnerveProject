@@ -1,4 +1,7 @@
 <%-include("partials/header")-%>
+<div class="alert">
+    <%=msg%>
+</div>
 <div class="form">
     <form action="/ticket" method="post">
         <h1>Export Your Ticket</h1>
@@ -6,8 +9,9 @@
         <input type="email" name="email" placeholder="Enter email"><br>
         <Label>Password</Label>
         <input type="password" name="password" placeholder="Enter password"><br>
-        <button type="submit">Get Ticket</button>
+        <button type="submit" class="btn btn-primary">Get Ticket</button>
 
     </form>
 </div>
 
+<%-include("partials/footer")-%>
