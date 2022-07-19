@@ -12,7 +12,7 @@ const app=express();
 app.set('view engine','ejs');
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({extended: true}));
-mongoose.connect(process.env.MONGO_URL,{useNewUrlParser:true});
+mongoose.connect("mongodb://127.0.0.1:27017/innerveDb",{useNewUrlParser:true});
 const registerSchema=new mongoose.Schema(
   {
    Name:String,
@@ -132,6 +132,6 @@ app.post("/register",
     msg="";
 
 });
-app.listen(process.env.PORT || 3000, function(){
+app.listen(3000, function(){
     console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
   });
