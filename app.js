@@ -2,6 +2,8 @@ const express=require ("express");
 const bodyParser=require("body-parser");
 const mongoose=require("mongoose");
 const bcrypt=require("bcrypt");
+const dotenv = require("dotenv");
+dotenv.config()
 const { body, validationResult } = require('express-validator');
 const { check } = require('express-validator');
 var msg="";
@@ -10,7 +12,7 @@ const app=express();
 app.set('view engine','ejs');
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({extended: true}));
-mongoose.connect("mongodb://127.0.0.1:27017/innerveDb",{useNewUrlParser:true});
+mongoose.connect(process.env.MONGO_URL,{useNewUrlParser:true});
 const registerSchema=new mongoose.Schema(
   {
    Name:String,
