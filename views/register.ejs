@@ -6,18 +6,18 @@
 <div class="form">
     <h1>Register</h1>
     <form action="/register" method="post">
-        <label>Name:</label>
+        <label>Name:*</label>
         <input type="text"  placeholder="Enter Name" name="name"><br>
-        <label>Email:</label>
-        <input type="text"  placeholder="Enter email" name="email"><br>
-        <label>Phone:</label>
-        <input type="number" name="phone" placeholder="Enter Phone No."><br>
-        <label>College:</label>
+        <label>Email:*</label>
+        <input type="text"  placeholder="Enter valid email" name="email"><br>
+        <label>Phone:*</label>
+        <input type="number" name="phone" placeholder="PhoneNo.(Valid 10 Digit)"><br>
+        <label>College:*</label>
         <input type="string"  placeholder="College Name" name="college"><br>
-        <label>Year:</label>
+        <label>Year:*</label>
         <input type="number" name="year" placeholder="Year of Graduation"><br>
-        <label>Password:</label>
-        <input type="password" name="password" placeholder="Enter Password"><br>
+        <label>Password:*</label>
+        <input type="password" name="password" placeholder="6 characters Atleast"><br>
         <button type="submit" class="btn btn-primary">Register</button>
 
     </form>

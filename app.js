@@ -5,6 +5,7 @@ const bcrypt=require("bcrypt");
 const { body, validationResult } = require('express-validator');
 const { check } = require('express-validator');
 var msg="";
+var port=process.env.PORT||3000;
 const app=express();
 app.set('view engine','ejs');
 app.use(express.static("public"));
@@ -76,7 +77,7 @@ app.post("/ticket",(req,res)=>{
 })
 app.post("/register",
 [//validation process
-    body("email").isEmail(),//checking if entered is email
+    body("email").isEmail().notEmpty(),//checking if entered is email
     body('password').isLength({ min:6 })//restricting length of password
     .withMessage('must be at least 6 chars long'),
     check('email').custom(value => {
@@ -93,7 +94,11 @@ app.post("/register",
             return Promise.reject('Phone No. already registered');
           }
         });//checking for unique phone no.
-      })],(req,res)=>{
+      }),
+    body('name').notEmpty(),
+    body('year').notEmpty(),
+    body('college').notEmpty()
+],(req,res)=>{
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         msg=errors.array()[0].msg+":"+errors.array()[0].param;
@@ -125,7 +130,7 @@ app.post("/register",
     msg="";
 
 });
-app.listen(3000,()=>
+app.listen(port,()=>
 {
     console.log("Port:3000");
 });
